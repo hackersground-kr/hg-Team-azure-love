@@ -25,7 +25,7 @@ class JwtAuthenticationFilter(
     ) {
         val token: String? = request.getHeader("Authorization")
 
-        if (token.isNullOrEmpty() || !token.startsWith("Bearer ")) {
+        if (token.isNullOrEmpty()) {
             doFilter(request, response, filterChain)
 //            setErrorResponse(response, JwtTokenError.JWT_EMPTY_EXCEPTION)
         } else {

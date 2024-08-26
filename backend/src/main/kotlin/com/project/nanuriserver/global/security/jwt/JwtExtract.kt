@@ -50,7 +50,7 @@ class JwtExtract(
 
         val details = CustomUserDetails(user)
 
-        return UsernamePasswordAuthenticationToken(details, null, details.getAuthorities())
+        return UsernamePasswordAuthenticationToken(details, null, details.authorities)
     }
 
     fun getToken(token: String): String {
