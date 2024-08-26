@@ -54,7 +54,7 @@ resource servicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   kind: 'linux'
 
   sku: {
-    name: 'B1'
+    name: 'B3'
     capacity: 1
   }
   properties: {
