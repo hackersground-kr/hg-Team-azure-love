@@ -11,7 +11,6 @@ param dbPassword string
 param jwtSecret string
 
 var mysqlServerName = '${name}-mysql'
-
 module vnetSetup 'vnet.bicep' = {
   name: 'vnet'
   scope: resourceGroup()

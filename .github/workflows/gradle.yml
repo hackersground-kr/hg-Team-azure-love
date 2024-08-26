@@ -38,15 +38,6 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew bootJar
-
-  deploy:
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-
-    steps:
       - name: test dir
         run: |
           ls -l
