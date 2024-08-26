@@ -29,7 +29,9 @@ function MyPage() {
       </Box>
 
       <MyPageButton title={'내 게시글 보기'} imgSrc={memo} />
+
       <MyPageButton title={'내 정보 수정하기'} imgSrc={edit} />
+
       <MyPageButton title={'나누리 로그아웃'} imgSrc={logout} destructive={true} />
     </ColumnFlexBox>
   );

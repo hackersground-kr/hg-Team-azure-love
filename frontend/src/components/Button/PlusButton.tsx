@@ -1,13 +1,9 @@
 import { PlusButtonStyle } from '@/components/Button/styled';
 import plus from '/plus.svg';
 
-function PlusButton() {
+function PlusButton(props: { onClick?: () => void }) {
   return (
-    <PlusButtonStyle
-      onClick={() => {
-        console.log('button clicked');
-      }}
-    >
+    <PlusButtonStyle onClick={props.onClick}>
       <img src={plus} alt="plus" />
     </PlusButtonStyle>
   );

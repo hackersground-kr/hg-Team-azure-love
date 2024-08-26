@@ -6,6 +6,10 @@ enum Pages {
   Home,
   My,
   Settings,
+  Post,
+  Detail,
+  Signup,
+  Signin,
   NotFound,
 }
 

@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { createContext, Fragment, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,19 +12,27 @@ import Notifications from '@/sections/Notifications';
 import SW from '@/sections/SW';
 import TabBar from '@/sections/TabBar';
 
+export const HiddenContext = createContext<React.Dispatch<React.SetStateAction<boolean>>>(
+  () => false,
+);
+
 function App() {
+  const [isHidden, setHidden] = useState<boolean>(false);
+
   return (
-    <Fragment>
-      <CssBaseline />
-      <Notifications />
-      <HotKeys />
-      <SW />
-      <BrowserRouter>
-        <Header />
-        <Pages />
-        <TabBar />
-      </BrowserRouter>
-    </Fragment>
+    <HiddenContext.Provider value={setHidden}>
+      <Fragment>
+        <CssBaseline />
+        <Notifications />
+        <HotKeys />
+        <SW />
+        <BrowserRouter>
+          <Header isHidden={isHidden} />
+          <Pages />
+          <TabBar isHidden={isHidden} />
+        </BrowserRouter>
+      </Fragment>
+    </HiddenContext.Provider>
   );
 }
 

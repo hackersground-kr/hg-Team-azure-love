@@ -21,7 +21,27 @@ const routes: Routes = {
   [Pages.Settings]: {
     component: asyncComponentLoader(() => import('@/pages/Settings')),
     path: '/settings',
-    title: 'Settings'
+    title: 'Settings',
+  },
+  [Pages.Post]: {
+    component: asyncComponentLoader(() => import('@/pages/Post')),
+    path: '/post',
+    title: 'Post',
+  },
+  [Pages.Detail]: {
+    component: asyncComponentLoader(() => import('@/pages/Detail')),
+    path: '/detail',
+    title: 'Detail',
+  },
+  [Pages.Signup]: {
+    component: asyncComponentLoader(() => import('@/pages/Auth/SignupPage')),
+    path: '/signup',
+    title: 'Signup',
+  },
+  [Pages.Signin]: {
+    component: asyncComponentLoader(() => import('@/pages/Auth/SigninPage')),
+    path: '/signin',
+    title: 'Signin',
   },
   [Pages.NotFound]: {
     component: asyncComponentLoader(() => import('@/pages/NotFound')),
