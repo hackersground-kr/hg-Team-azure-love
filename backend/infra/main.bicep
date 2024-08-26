@@ -10,17 +10,6 @@ param dbPassword string
 @secure()
 param jwtSecret string
 
-var mysqlServerName = '${name}-mysql'
-module vnetSetup 'vnet.bicep' = {
-  name: 'vnet'
-  scope: resourceGroup()
-  params: {
-    mysqlServerName: mysqlServerName
-    appName: name
-    location: location
-  }
-}
-
 module storageSetup 'storage.bicep' = {
   name: 'storage'
   scope: resourceGroup()
@@ -31,10 +20,30 @@ module storageSetup 'storage.bicep' = {
   }
 }
 
+var mysqlServerName = '${name}-mysql'
+module vnetSetup 'vnet.bicep' = {
+  name: 'vnet'
+  scope: resourceGroup()
+  params: {
+    appName: name
+    location: location
+  }
+}
+
+module netlink 'netlink.bicep' = {
+  name: 'netlink'
+  scope: resourceGroup()
+  dependsOn: [vnetSetup]
+  params: {
+    mysqlServerName: mysqlServerName
+    vnetId: vnetSetup.outputs.vnetId
+  }
+}
+
 module nanuriSetup 'setup.bicep' = {
   name: 'nanuri'
   scope: resourceGroup()
-  dependsOn: [vnetSetup, storageSetup]
+  dependsOn: [vnetSetup, storageSetup, netlink]
   params: {
     appName: name
     location: location
@@ -43,7 +52,7 @@ module nanuriSetup 'setup.bicep' = {
     storageAccountId: storageSetup.outputs.storageAccountId
 
     mysqlServerName: mysqlServerName
-    privateDnsZoneId: vnetSetup.outputs.privateDnsZoneId
+    privateDnsZoneId: netlink.outputs.privateDnsZoneId
     mysqlSubnetId: vnetSetup.outputs.mysqlSubnetId
     backendSubnetId: vnetSetup.outputs.backendSubnetId
 

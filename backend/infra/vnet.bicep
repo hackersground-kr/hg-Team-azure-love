@@ -1,4 +1,3 @@
-param mysqlServerName string
 param appName string
 param location string
 
@@ -45,26 +44,6 @@ resource vnet 'Microsoft.Network/virtualNetworks@2022-07-01' = {
   }
 }
 
-
-resource privateDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
-  name: '${mysqlServerName}.private.mysql.database.azure.com'
-  dependsOn: [vnet]
-  location: 'global'
-}
-
-resource vNetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
-  name: '${mysqlServerName}-link'
-  location: 'global'
-  dependsOn: [vnet, privateDnsZone]
-  parent: privateDnsZone
-  properties: {
-    registrationEnabled: false
-    virtualNetwork: {
-      id: vnet.id
-    }
-  }
-}
-
-output privateDnsZoneId string = privateDnsZone.id
+output vnetId string = vnet.id
 output mysqlSubnetId string = vnet::mysqlSubnet.id
 output backendSubnetId string = vnet::backendSubnet.id
