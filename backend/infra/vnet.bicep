@@ -55,6 +55,7 @@ resource privateDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
 resource vNetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
   name: '${mysqlServerName}-link'
   location: 'global'
+  dependsOn: [vnet, privateDnsZone]
   parent: privateDnsZone
   properties: {
     registrationEnabled: false
