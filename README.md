@@ -92,6 +92,20 @@
         ```bash
         java -version
         ```
+   5.  MacOS - Bicep 설정
+       5-1. 터미널을 킨다. command + 스페이스바)
+        
+        <img width="712" alt="Screenshot 2024-08-27 at 03 06 31" src="https://github.com/user-attachments/assets/02f11e35-c64b-4f85-be07-50cb980ab02c">
+        
+    5-2. 아래 명령어들을 한줄씩 적는다
+    
+        ```bash
+        brew update
+        brew install gh
+        brew install azure-cli
+        brew tap azure/azd && brew install azd
+        ```
+    
         
 2. Window
     1. 아래 링크로 접속합니다.
@@ -108,6 +122,88 @@
         ```
         
         java 버전이 표시될 경우 성공적으로 설치된 것입니다(1-C 참고).
+
+2-1. Bicep 설정
+
+1. https://github.com/git-for-windows/git/releases/download/v2.46.0.windows.1/Git-2.46.0-64-bit.exe
+2. https://github.com/cli/cli/releases/download/v2.55.0/gh_2.55.0_windows_amd64.msi
+3. https://azcliprod.blob.core.windows.net/msi/azure-cli-2.63.0-x64.msi
+
+위 링크들을 모두 들어가 Git, gh, az를 설치합니다, 그 후에는 다음 스크린샷을 따라 주세요. 원본 노션 링크를 첨부하니 필요할 경우 참고해 주시기를 바랍니다!
+노션 링크 : https://halved-freesia-af1.notion.site/b6498c0c41d54ce081b402a1186aaa3c?pvs=4 <p>
+<img width="391" alt="스크린샷 2024-08-27 오전 2 46 04" src="https://github.com/user-attachments/assets/933cb002-eb9e-4003-8a00-c68d0322dcee"> <p>
+<img width="266" alt="스크린샷 2024-08-27 오전 2 46 18" src="https://github.com/user-attachments/assets/dee50ffc-915a-49a9-8b6c-233546beefe1"> <p>
+<img width="246" alt="스크린샷 2024-08-27 오전 2 46 45" src="https://github.com/user-attachments/assets/1dabba36-fbbb-4cb7-98e0-b44e613330dc"> <p>
+<img width="258" alt="스크린샷 2024-08-27 오전 2 47 12" src="https://github.com/user-attachments/assets/278fbd4c-5ebb-43c0-9549-f9c78cc8942c"> <p>
+<img width="374" alt="스크린샷 2024-08-27 오전 2 47 31" src="https://github.com/user-attachments/assets/f714cef1-0cc6-4bb9-8966-7f782598ba8a"> <p>
+<img width="359" alt="스크린샷 2024-08-27 오전 2 47 54" src="https://github.com/user-attachments/assets/b5a49382-9856-48b0-a35c-b369262ab953"> <p>
+<img width="342" alt="스크린샷 2024-08-27 오전 2 48 16" src="https://github.com/user-attachments/assets/994e563b-e9dd-46a0-90b8-b45da5f62844"> <p>
+<img width="454" alt="스크린샷 2024-08-27 오전 2 48 40" src="https://github.com/user-attachments/assets/720bed8e-e243-410d-88e5-1bb3837def52"> <p>
+플랫폼 공통 - 계정 로그인 <p>
+<img width="454" alt="스크린샷 2024-08-27 오전 2 49 01" src="https://github.com/user-attachments/assets/eb90ae4f-a9cf-45bb-9ed7-9bc8b0c013e6"> <p>
+<img width="446" alt="스크린샷 2024-08-27 오전 2 49 30" src="https://github.com/user-attachments/assets/bba42c3d-59dd-40b5-b97b-a3e3b7e2b549"> <p> 
+<img width="356" alt="스크린샷 2024-08-27 오전 2 50 01" src="https://github.com/user-attachments/assets/c34058e0-7504-4167-b75f-1e49e4ece181"> <p>
+<img width="451" alt="스크린샷 2024-08-27 오전 2 50 26" src="https://github.com/user-attachments/assets/c2a97f6e-b427-4419-ba34-13ddc9cfef03"> <p>
+아래 명령어를 입력 해 줍니다. 
+```Shell
+# OS 공통
+git clone (아까 복사한 URL을 붙여넣기)
+```
+![00](https://github.com/user-attachments/assets/c3ada8bd-0ce1-4047-b18f-99ef7c745f27)
+```Shell
+cd hg-Team-azure-love
+```
+다음 명령어를 os에 맞게 쳐줍니다
+
+```powershell
+# 맥OS
+REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+cd $REPOSITORY_ROOT/backend
+sudo chmod 755 ./gradlew # 비밀번호 입력
+./gradlew bootJar
+
+# 윈도우
+$REPOSITORY_ROOT = git rev-parse --show-toplevel
+cd $REPOSITORY_ROOT/backend
+.\gradlew.bat bootJar
+```
+아래와 같은 화면이 나와야 합니다.
+![0](https://github.com/user-attachments/assets/12db3aa6-647f-4803-a410-129c5dd204ca)
+아래 명령어를 입력 하여 Bicep 자동으로 리소스를 생성합니다.
+
+```powershell
+azd init -e '애저 리소스 그룹 이름'
+azd config set alpha.resourceGroupDeployments on
+azd up
+```
+
+구독 플랜을 선택합니다.
+![11](https://github.com/user-attachments/assets/192cb196-db26-4965-8834-88cf503421aa)
+애저 위치로 Korea Central을 선택합니다.
+![22](https://github.com/user-attachments/assets/4f6b0749-6c95-4f1e-a87c-04f9dd09d40f)
+아래의 정보를 활용해 입력을 요구하는 모든 정보를 채우세요. 아래 조건에 해당하도록 자유롭게 작성해주세요.
+![1](https://github.com/user-attachments/assets/e8d325f1-2702-4479-aa39-d1a5400ecffb)
+```
+jwtSecret: 6lHthvX15Va3/Cqh/ftNgek6ewRIKZoDS2VZw2NBXh+2cp7q5BrrsJlfA2EKDR6UGvELeAv1cg7mQNVDFi0sqzkCmVL4PJrTGKlDvbGFmzJzKBjoVSPD2H9t+QkSw4+mCfFehTFnnmiP1ulLfp1xOyA6bUjmQogCUgjAbjHJZSF5OZ2VoyUtQn8+f0fJvYLpI8NrZrWHBEVKXbXgSaNZ0Pve8JHaiW1iB+kSZw==
+dbName, dbUser: 영문 대소문자로만 이루어진 16자 이내의 짦은 글자 (특수문자 및 '-' 및 '_' 사용 불가)
+dbPassword: 강력한 데이터베이스 비밀번호
+name: 배포를 원하는 이름 (작성자의 경우 nanuri-api)
+```
+본인의 애저 리소스 그룹을 선택합니다. (작성자의 경우, rg-Team-azure-love)
+![2](https://github.com/user-attachments/assets/eaaa4782-eb3d-4dcf-8402-2bf751edb333)
+완료 될 때까지 기다립니다. (대략 5~15분 소요)
+![3](https://github.com/user-attachments/assets/4493ee01-c614-4596-98b8-7f2fac07c735)
+애저 리소스가 전부 만들어 졌습니다.
+![4](https://github.com/user-attachments/assets/89bd90bd-57d9-48a5-a96b-286453bc0d4e)
+마지막으로, 다음 명령어를 입력 해 서버를 배포합니다.
+```Shell
+az webapp deploy --resource-group '애저 리소스 그룹' --name '아까 위에서 입력한 배포를 원하는 이름 (name)'-backend --src-path ./build/libs/nanuri-server-0.0.1.jar --type jar
+# 작성자의 경우
+# az webapp deploy --resource-group rg-Team-azure-love --name nanuri-api-backend --src-path ./build/libs/nanuri-server-0.0.1.jar --type jar
+```
+명령어가 끝날 때까지 기다립니다. 
+![ee](https://github.com/user-attachments/assets/7403f678-a202-4784-aee9-51986db87ba9)
+
 
 ### 깃허브 준비사항 (Mac, Window 동일)
 
