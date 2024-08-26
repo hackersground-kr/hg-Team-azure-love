@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'frontend/**/*'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
@@ -19,7 +21,7 @@ jobs:
         with:
           submodules: true
           lfs: false
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -41,7 +43,7 @@ jobs:
           app_location: "./frontend" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "dist" # Vite의 기본 빌드 출력 폴더
-          
+
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
