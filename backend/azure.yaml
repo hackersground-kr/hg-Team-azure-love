@@ -1,0 +1,9 @@
+name: nanuri
+
+infra:
+  provider: bicep
+  path: infra
+  module: main
+
+pipeline:
+  provider: github
