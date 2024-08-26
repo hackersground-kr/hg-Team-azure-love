@@ -20,6 +20,8 @@ jobs:
   build:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./backend
     name: CI using Gradle Build
     steps:
       - uses: actions/checkout@v3
