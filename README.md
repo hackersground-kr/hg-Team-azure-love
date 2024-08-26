@@ -148,18 +148,17 @@ https://github.com/hackersground-kr/hg-Team-azure-love
         ![다운로드 (1)](https://github.com/user-attachments/assets/34beed7a-621b-4c32-9e99-9aa2af273bf3)<p>
         [새 시스템 변수] 대화상자가 나타나면 [변수 이름]에 JAVA_HOME을 입력하고, [변수 값]에 JDK 17 설치 경로를 입력합니다. 두 항목을 입력 후 [확인] 버튼을 클릭하여 적용합니다. <p>
         ![다운로드 (3)](https://github.com/user-attachments/assets/51baf36a-6638-44e8-8436-0233d763794b)<p>
-        ```
-        %JAVA_HOME%/bin
-        ```
-        [시스템 변수] Path를 편집하여 첫 번째 항목으로 JAVA_HOME 시스템 변수를 추가해 줍니다. <p>
         [환경 변수] 대화상자의 [시스템 변수(S)]에서 Path 변수 항목을 선택하고 [편집]을 클릭합니다. <p>
         ![다운로드 (4)](https://github.com/user-attachments/assets/a3791f6d-e268-4835-a558-95f26a2c9f8c) <p>
         [환경 변수 편집] 대화상자가 나타나면 [새로 만들기] 버튼을 클릭하고 항목이 추가되면 %JAVA_HOME%\bin 입력합니다. <p>
+        ```
+        %JAVA_HOME%/bin
+        ```
         ![다운로드 (5)](https://github.com/user-attachments/assets/02094038-3b86-4ac9-8268-0641bf9a84bc) <p>
         등록한 % JAVA_HOME%\n을 선택하고 [위로 이동] 버튼을 클릭해서 첫 번째 항목으로 올려줍니다.  그 후 모든 대화 상자의 [확인] 버튼을 클릭하여 환경 변수 설정을 마칩니다.  <p>
         ![다운로드 (6)](https://github.com/user-attachments/assets/ce6a8307-8795-4bc8-a9e4-7780c0757ca9) <p>
         
-    4. 터미널을 실행 후 아래 명령어를 입력하여 JAVA의 설치 여부를 확인합니다.
+    4. 윈도우 키를 눌러 명령 프롬포트(혹은 CMD)를 검색하여 터미널을 실행 후 아래 명령어를 입력하여 JAVA의 설치 여부를 확인합니다.
         
         ```powershell
         java -version
