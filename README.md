@@ -127,6 +127,8 @@ https://github.com/hackersground-kr/hg-Team-azure-love
 
 <img width="1822" alt="4" src="https://github.com/user-attachments/assets/4d9583e1-b55a-4976-a99e-977c8cdc6e74">
 
+오른쪽 하단의 초록색 버튼을 눌러서 포크를 해옵니다.
+
 <img width="1822" alt="5" src="https://github.com/user-attachments/assets/965555db-35a4-4f0c-9ae3-9e76b3fcb9e1">
 
 1. 이렇게 포크가 완료된 모습이 보인다면 이 과정은 완성입니다.
