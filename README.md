@@ -227,6 +227,7 @@ azd up
 아래의 정보를 활용해 입력을 요구하는 모든 정보를 채우세요. 아래 조건에 해당하도록 자유롭게 작성해주세요.
 ![1](https://github.com/user-attachments/assets/e8d325f1-2702-4479-aa39-d1a5400ecffb)
 ```
+# jwt secret은 그대로 복사 후 붙여넣기 해서 사용하시면 됩니다!
 jwtSecret: 6lHthvX15Va3/Cqh/ftNgek6ewRIKZoDS2VZw2NBXh+2cp7q5BrrsJlfA2EKDR6UGvELeAv1cg7mQNVDFi0sqzkCmVL4PJrTGKlDvbGFmzJzKBjoVSPD2H9t+QkSw4+mCfFehTFnnmiP1ulLfp1xOyA6bUjmQogCUgjAbjHJZSF5OZ2VoyUtQn8+f0fJvYLpI8NrZrWHBEVKXbXgSaNZ0Pve8JHaiW1iB+kSZw==
 dbName, dbUser: 영문 대소문자로만 이루어진 16자 이내의 짦은 글자 (특수문자 및 '-' 및 '_' 사용 불가)
 dbPassword: 강력한 데이터베이스 비밀번호
