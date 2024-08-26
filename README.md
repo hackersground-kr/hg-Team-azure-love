@@ -86,25 +86,46 @@
         <img width="699" alt="스크린샷 2024-08-26 오후 7 24 38" src="https://github.com/user-attachments/assets/fe1ecb63-df96-442d-9ef8-0dd664c4849a">
         
         설치가 완료되면 닫기 버튼을 누릅니다.
+       
+       설정 -> 시스템 정보 -> [고급 시스템 설정]을 클릭합니다.
+       
+        ![다운로드](https://github.com/user-attachments/assets/4c2fb7db-bbc5-433a-af68-7b1904d1ed15)
+  
+       시스템 속성 [환경 변수]을 클릭 후 [환경 변수] 대화 상자가 나타나면 [시스템 변수]에서 [새로 만들기] 버튼을 클릭합니다.
+       
+![다운로드 (2)](https://github.com/user-attachments/assets/051308b7-29e1-4580-a043-347c89886c81)
+![다운로드 (1)](https://github.com/user-attachments/assets/34beed7a-621b-4c32-9e99-9aa2af273bf3)
+[새 시스템 변수] 대화상자가 나타나면 [변수 이름]에 JAVA_HOME을 입력하고, [변수 값]에 JDK 17 설치 경로를 입력합니다. 두 항목을 입력 후 [확인] 버튼을 클릭하여 적용합니다.
+![다운로드 (3)](https://github.com/user-attachments/assets/51baf36a-6638-44e8-8436-0233d763794b)
+```
+%JAVA_HOME%/bin
+```
+[시스템 변수] Path를 편집하여 첫 번째 항목으로 JAVA_HOME 시스템 변수를 추가해 줍니다. <p>
+[환경 변수] 대화상자의 [시스템 변수(S)]에서 Path 변수 항목을 선택하고 [편집]을 클릭합니다.
+![다운로드 (4)](https://github.com/user-attachments/assets/a3791f6d-e268-4835-a558-95f26a2c9f8c)
+[환경 변수 편집] 대화상자가 나타나면 [새로 만들기] 버튼을 클릭하고 항목이 추가되면 %JAVA_HOME%\bin 입력합니다.
+![다운로드 (5)](https://github.com/user-attachments/assets/02094038-3b86-4ac9-8268-0641bf9a84bc)
+등록한 % JAVA_HOME%\n을 선택하고 [위로 이동] 버튼을 클릭해서 첫 번째 항목으로 올려줍니다.  그 후 모든 대화 상자의 [확인] 버튼을 클릭하여 환경 변수 설정을 마칩니다. 
+![다운로드 (6)](https://github.com/user-attachments/assets/ce6a8307-8795-4bc8-a9e4-7780c0757ca9)
+
+터미널을 연 후에 아래 명령을 입력하여 설치가 완료된 것을 확인한다.
         
-        터미널을 연 후에 아래 명령을 입력하여 설치가 완료된 것을 확인한다.
-        
-        ```bash
-        java -version
-        ```
-   5.  MacOS - Bicep 설정
+```bash
+java -version
+```
+   6.  MacOS - Bicep 설정
        5-1. 터미널을 킨다. command + 스페이스바)
         
         <img width="712" alt="Screenshot 2024-08-27 at 03 06 31" src="https://github.com/user-attachments/assets/02f11e35-c64b-4f85-be07-50cb980ab02c">
         
-    5-2. 아래 명령어들을 한줄씩 적는다
+5-2. 아래 명령어들을 한줄씩 적는다
     
    ```bash
         brew update
         brew install gh
         brew install azure-cli
         brew tap azure/azd && brew install azd
-    ```
+   ```
     
         
 2. Window
