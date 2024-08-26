@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://${DATABASE_URL}/${DATABASE_SCHEME}
+    url: ${DATABASE_URL}/${DATABASE_SCHEME}
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,3 +21,6 @@ application:
     secretKey: ${JWT_SECRET}
     expiration: 172800000    # 48시간
     refreshExpiration: 604800000   # 7일
+
+azure-storage:
+  storage-connection-string: ${STORAGE_CONNECTION}
