@@ -99,12 +99,12 @@
         
     5-2. 아래 명령어들을 한줄씩 적는다
     
-        ```bash
+   ```bash
         brew update
         brew install gh
         brew install azure-cli
         brew tap azure/azd && brew install azd
-        ```
+    ```
     
         
 2. Window
