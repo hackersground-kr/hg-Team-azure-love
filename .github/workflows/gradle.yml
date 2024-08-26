@@ -30,6 +30,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+      - name: list directories
+        run: |
+          ls -l
+          cd backend
       - name: Build with Gradle
         run: |
           chmod +x gradlew
