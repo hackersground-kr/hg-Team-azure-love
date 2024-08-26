@@ -13,5 +13,5 @@ interface PostJpqlRepository {
     fun findAllPostByStatus(page: Pageable, status: Status): Page<Post>
     fun findAllPostByCategory(page: Pageable, category: Category): Page<Post>
     fun searchPosts(page: Pageable, term: String): Page<Post>
-    fun modify(id: Long, title: String?, content: String?, imageUrl: String?, status: Status?)
+    fun modify(id: Long, title: String?, content: String?, imageUuid: UUID?, status: Status?)
 }

@@ -65,7 +65,6 @@ class SecurityConfig(
                 it
                     .requestMatchers("/swagger-ui/**", "/v3/**").permitAll()
                     .requestMatchers("/auth/**").permitAll()
-                    .requestMatchers("/check/generate").permitAll()
                     .anyRequest().authenticated()
             }
             .addFilterBefore(

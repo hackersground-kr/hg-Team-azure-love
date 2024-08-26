@@ -19,17 +19,13 @@ import javax.crypto.spec.SecretKeySpec
 
 @Component
 class JwtExtract(
-    private val jwtProperties: JwtProperties,
+    private val jwtProvider: JwtProvider,
     private val userJpaRepository: UserJpaRepository
 ) {
-    private val secretKey: SecretKey = SecretKeySpec(
-        Base64.getDecoder().decode(this.jwtProperties.secretKey),
-        Jwts.SIG.HS512.key().build().algorithm
-    )
 
     fun checkTokenInfo(token: String): JwtErrorType {
         try {
-            Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token)
+            Jwts.parser().verifyWith(jwtProvider.secretKey).build().parseSignedClaims(token)
             return JwtErrorType.OK
         } catch (e: ExpiredJwtException) {
             return JwtErrorType.ExpiredJwtException
@@ -40,8 +36,10 @@ class JwtExtract(
         } catch (e: UnsupportedJwtException) {
             return JwtErrorType.UnsupportedJwtException
         } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
             return JwtErrorType.IllegalArgumentException
         } catch (e: Exception) {
+            e.printStackTrace()
             return JwtErrorType.UNKNOWN_EXCEPTION
         }
     }
@@ -60,7 +58,7 @@ class JwtExtract(
     }
 
     fun getUsername(token: String): String {
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).payload.get(
+        return Jwts.parser().verifyWith(jwtProvider.secretKey).build().parseSignedClaims(token).payload.get(
             "phoneNumber",
             String::class.java
         )

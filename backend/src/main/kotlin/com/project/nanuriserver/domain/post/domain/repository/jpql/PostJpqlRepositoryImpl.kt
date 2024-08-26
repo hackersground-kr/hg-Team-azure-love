@@ -2,6 +2,7 @@ package com.project.nanuriserver.domain.post.domain.repository.jpql
 
 import com.linecorp.kotlinjdsl.querymodel.jpql.predicate.Predicate
 import com.linecorp.kotlinjdsl.support.spring.data.jpa.repository.KotlinJdslJpqlExecutor
+import com.project.nanuriserver.domain.image.entity.ImageEntity
 import com.project.nanuriserver.domain.post.client.dto.Post
 import com.project.nanuriserver.domain.post.domain.entity.PostEntity
 import com.project.nanuriserver.domain.post.domain.enum.Category
@@ -54,14 +55,16 @@ class PostJpqlRepositoryImpl(
                 path(PostEntity::content),
                 path(UserEntity::_uuid),
                 path(UserEntity::name),
-                path(PostEntity::imageUrl),
+                path(ImageEntity::imageUrl),
                 path(PostEntity::category),
                 path(PostEntity::status),
             )
                 .from(
                     entity(PostEntity::class),
                     join(entity(UserEntity::class))
-                        .on(path(UserEntity::_uuid).eq(path(PostEntity::author)))
+                        .on(path(UserEntity::_uuid).eq(path(PostEntity::author))),
+                    leftJoin(entity(ImageEntity::class))
+                        .on(path(PostEntity::imageUuid).isNotNull().and(path(ImageEntity::imageUuid).eq(path(PostEntity::imageUuid)))),
                 )
                 .apply {
                     predicate?.let { where(it()) }
@@ -81,8 +84,8 @@ class PostJpqlRepositoryImpl(
         }
     }
 
-    override fun modify(id: Long, title: String?, content: String?, imageUrl: String?, status: Status?) {
-        if (title == null && content == null && imageUrl == null && status == null)
+    override fun modify(id: Long, title: String?, content: String?, imageUuid: UUID?, status: Status?) {
+        if (title == null && content == null && imageUuid == null && status == null)
             return // no modify. why??
         kotlinJdslJpqlExecutor.update(CustomJpql) {
             update(entity(PostEntity::class))
@@ -92,8 +95,8 @@ class PostJpqlRepositoryImpl(
                         val pth = path(PostEntity::content)
                         p?.set(pth, it) ?: run { p = set(pth, it) }
                     }
-                    imageUrl?.let {
-                        val pth = path(PostEntity::imageUrl)
+                    imageUuid?.let {
+                        val pth = path(PostEntity::imageUuid)
                         p?.set(pth, it) ?: run { p = set(pth, it) }
                     }
                     status?.let {

@@ -7,6 +7,7 @@ import com.project.nanuriserver.domain.post.service.PostService
 import com.project.nanuriserver.global.common.dto.response.BaseResponse
 import com.project.nanuriserver.global.common.dto.response.BaseResponseData
 import io.swagger.v3.oas.annotations.Operation
+import jakarta.validation.Valid
 import org.springdoc.core.converters.models.PageableAsQueryParam
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -63,8 +64,8 @@ class PostController(
     @PatchMapping
     @Operation(summary = "게시글 수정")
     @PageableAsQueryParam
-    fun getPostsByStatus(@RequestParam id: Long, @RequestBody request: PostModifyRequest): BaseResponse {
-        postService.modify(id, request.title, request.content, request.imageUrl, request.status)
+    fun getPostsByStatus(@RequestParam id: Long, @RequestBody @Valid request: PostModifyRequest): BaseResponse {
+        postService.modify(id, request.title, request.content, request.imageUuid, request.status)
         return BaseResponse.ok(message = "게시글 수정 성공")
     }
 

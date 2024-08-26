@@ -12,9 +12,9 @@ import javax.crypto.spec.SecretKeySpec
 @Component
 class JwtProvider(private val jwtProperties: JwtProperties) {
 
-    private val secretKey: SecretKey = SecretKeySpec(
+    val secretKey: SecretKey = SecretKeySpec(
         this.jwtProperties.secretKey.toByteArray(StandardCharsets.UTF_8),
-        Jwts.SIG.HS256.key().build().algorithm
+        Jwts.SIG.HS512.key().build().algorithm
     )
 
     fun generateAccessToken(phoneNumber: String, userRole: UserRole): String {

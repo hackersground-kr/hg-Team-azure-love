@@ -1,5 +1,6 @@
 package com.project.nanuriserver.domain.post.service
 
+import com.project.nanuriserver.domain.image.service.ImageService
 import com.project.nanuriserver.domain.post.client.dto.Post
 import com.project.nanuriserver.domain.post.client.dto.request.PostRegisterRequest
 import com.project.nanuriserver.domain.post.domain.entity.PostEntity
@@ -8,11 +9,13 @@ import com.project.nanuriserver.domain.post.domain.enum.Status
 import com.project.nanuriserver.domain.post.domain.repository.PostRepository
 import com.project.nanuriserver.domain.post.exception.PostNotFoundException
 import com.project.nanuriserver.global.common.repository.UserSecurity
+import com.project.nanuriserver.global.common.util.UUIDSafe
 import com.project.nanuriserver.global.exception.error.AccessDeniedException
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class PostService(
@@ -26,7 +29,7 @@ class PostService(
                 title = request.title,
                 content = request.content,
                 author = userSecurity.getUser().uuid,
-                imageUrl = request.imageUrl,
+                imageUuid = request.imageUuid?.let(::UUIDSafe),
                 status = Status.PROGRESS,
                 category = request.category,
             )
@@ -41,7 +44,7 @@ class PostService(
         return postRepository.searchPosts(pageable, term)
     }
 
-    fun modify(id: Long, title: String?, content: String?, imageUrl: String?, status: String?) {
+    fun modify(id: Long, title: String?, content: String?, imageUuid: String?, status: String?) {
         val statusSafe = status?.let { Status.StatusSafe(it) }
         val found = postRepository.findByIdOrNull(id)
             ?: throw PostNotFoundException
@@ -49,7 +52,7 @@ class PostService(
         if (found.author != userSecurity.getUser().uuid)
             throw AccessDeniedException
 
-        postRepository.modify(found.id, title, content, imageUrl, statusSafe)
+        postRepository.modify(found.id, title, content, imageUuid?.let(::UUIDSafe), statusSafe)
     }
 
     fun findAll(pageable: Pageable): Page<Post> {

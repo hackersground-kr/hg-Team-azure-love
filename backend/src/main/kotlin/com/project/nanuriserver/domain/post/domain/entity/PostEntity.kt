@@ -23,7 +23,7 @@ class PostEntity(
     @Column(nullable = false)
     val author: UUID,
 
-    val imageUrl: String? = null,
+    val imageUuid: UUID? = null,
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

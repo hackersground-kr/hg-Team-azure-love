@@ -8,8 +8,8 @@ data class PostRegisterRequest(
     val title: String,
     @JsonProperty("content")
     val content: String,
-    @JsonProperty("imageUrl")
-    val imageUrl: String?,
+    @JsonProperty("imageUuid")
+    val imageUuid: String?,
     @JsonProperty("category")
     val category: Category
 )
