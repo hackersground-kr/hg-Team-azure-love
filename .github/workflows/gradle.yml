@@ -1,5 +1,8 @@
 name: Backend App CI / CD progress
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:
@@ -39,7 +42,15 @@ jobs:
   deploy:
     needs: [ build ]
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
+      - name: test dir
+        run: |
+          ls -l
+          ls -l ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v2
         with:

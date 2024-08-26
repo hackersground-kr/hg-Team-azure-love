@@ -1,5 +1,6 @@
 param name string
 param location string = 'Korea Central'
+
 @secure()
 param dbName string
 @secure()
