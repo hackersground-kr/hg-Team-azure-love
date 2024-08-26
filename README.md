@@ -109,7 +109,7 @@
         
         java 버전이 표시될 경우 성공적으로 설치된 것입니다(1-C 참고).
 
-### Frontend 준비사항 (Mac, Window 동일)
+### 깃허브 준비사항 (Mac, Window 동일)
 
 1. https://github.com/ 에 접속합니다. 
     
@@ -121,17 +121,17 @@
     
 <img width="1822" alt="3" src="https://github.com/user-attachments/assets/5a6aca7c-3997-42a2-b88f-87fd7320e4bf">    
 
-1. GitHub에서 
+3. GitHub에서 
 https://github.com/hackersground-kr/hg-Team-azure-love
 로 접속, 프로젝트를 내 계정으로 fork해옵니다.
 
 <img width="1822" alt="4" src="https://github.com/user-attachments/assets/4d9583e1-b55a-4976-a99e-977c8cdc6e74">
 
-오른쪽 하단의 초록색 버튼을 눌러서 포크를 해옵니다.
+4. 오른쪽 하단의 초록색 버튼을 눌러서 포크를 해옵니다.
 
 <img width="1822" alt="5" src="https://github.com/user-attachments/assets/965555db-35a4-4f0c-9ae3-9e76b3fcb9e1">
 
-1. 이렇게 포크가 완료된 모습이 보인다면 이 과정은 완성입니다.
+5. 이렇게 포크가 완료된 모습이 보인다면 이 과정은 완성입니다.
 
 <img width="1822" alt="6" src="https://github.com/user-attachments/assets/77e0a275-830b-479b-9178-d10b4faa7302">
 
