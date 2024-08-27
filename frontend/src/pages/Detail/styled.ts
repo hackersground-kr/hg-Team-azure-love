@@ -17,6 +17,7 @@ const DetailTitle = styled(Typography)({
 
 const DetailRegion = styled(Typography)({
   marginLeft: '20px',
+  width: '140px',
   fontFamily: 'Pretendard',
   fontSize: '16px',
   fontWeight: '500',
