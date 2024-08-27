@@ -46,7 +46,15 @@ function PostPage() {
           <ContentField placeholder="내용을 입력해주세요" multiline={true} minRows={2} />
         </FieldBackground>
 
-        <FinalButton>작성 완료</FinalButton>
+
+        <FieldTitle>사진 업로드</FieldTitle>
+
+        <FieldBackground>
+          < input accept='.png' type='file' style={{ padding: '20px' }} />
+        </FieldBackground>
+
+
+        <FinalButton onClick={() => navigate('/')}>작성 완료</FinalButton>
       </Box>
     </ColumnFlexBox>
   );

@@ -72,11 +72,11 @@ function SignupPage() {
       </AuthFieldBackground>
 
       <AuthFieldBackground>
-        <AuthField placeholder={'비밀번호를 입력해주세요'} value={password} onChange={(e) => setPassword(e.target.value)} />
+        <AuthField placeholder={'비밀번호를 입력해주세요'} value={password} onChange={(e) => setPassword(e.target.value)} type={'password'} />
       </AuthFieldBackground>
 
       <AuthFieldBackground>
-        <AuthField placeholder={'비밀번호를 다시 한번 더 입력해주세요'} value={passwordCon} onChange={(e) => setPasswordCon(e.target.value)} />
+        <AuthField placeholder={'비밀번호를 다시 한번 더 입력해주세요'} value={passwordCon} onChange={(e) => setPasswordCon(e.target.value)} type={'password'} />
       </AuthFieldBackground>
     </Box>
 

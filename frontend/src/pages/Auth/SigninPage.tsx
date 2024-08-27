@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import SigninRequest from '@/types/request/SigninRequest';
 import { useState } from 'react';
 import { BASE_URL } from '@/config';
-import axios, { request } from 'axios';
+import axios from 'axios';
 import Button from '@mui/material/Button';
 
 function SigninPage() {
@@ -19,7 +19,7 @@ function SigninPage() {
 
   function signin(request: SigninRequest) {
     axios.post(`${BASE_URL}/auth/sign-in`, request).then((res) => {
-      localStorage.setItem('user', JSON.stringify(res.data));
+      localStorage.setItem('user', JSON.stringify(res.data.data));
       navigate('/');
     });
   }
@@ -60,7 +60,7 @@ function SigninPage() {
         </AuthFieldBackground>
 
         <AuthFieldBackground>
-          <AuthField placeholder={'비밀번호를 입력해주세요'} value={password} onChange={(e) => setPassword(e.target.value)} />
+          <AuthField placeholder={'비밀번호를 입력해주세요'} value={password} onChange={(e) => setPassword(e.target.value)} type={'password'} />
         </AuthFieldBackground>
       </Box>
 
