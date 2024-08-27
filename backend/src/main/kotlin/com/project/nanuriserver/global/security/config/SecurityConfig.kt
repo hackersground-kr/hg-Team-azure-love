@@ -31,7 +31,7 @@ import java.io.IOException
 class SecurityConfig(
     private val objectMapper: ObjectMapper,
     private val jwtExtract: JwtExtract,
-    private val coroutineSecurityFilter: CoroutineSecurityFilter
+//    private val coroutineSecurityFilter: CoroutineSecurityFilter
 ) {
     @Bean
     fun securityFilterChain(
