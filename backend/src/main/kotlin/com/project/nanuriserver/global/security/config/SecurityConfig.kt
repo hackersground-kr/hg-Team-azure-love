@@ -9,7 +9,6 @@ import com.project.nanuriserver.global.security.jwt.exception.error.JwtTokenErro
 import com.project.nanuriserver.global.security.jwt.filter.CoroutineSecurityFilter
 import com.project.nanuriserver.global.security.jwt.filter.JwtAuthenticationFilter
 import jakarta.servlet.http.HttpServletResponse
-import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType
@@ -34,7 +33,6 @@ class SecurityConfig(
     private val jwtExtract: JwtExtract,
     private val coroutineSecurityFilter: CoroutineSecurityFilter
 ) {
-    private val log = LoggerFactory.getLogger(SecurityConfig::class.java)
     @Bean
     fun securityFilterChain(
         http: HttpSecurity
@@ -58,10 +56,7 @@ class SecurityConfig(
                 }
                     .authenticationEntryPoint { req, res, _ ->
                         res.send(
-                            if (req.getHeader("Authorization") != null) {
-                                log.info("{}", res.getHeader("Authorization"))
-                                JwtTokenError.JWT_ERROR
-                            }
+                            if (req.getHeader("Authorization") != null) JwtTokenError.JWT_ERROR
                             else JwtTokenError.JWT_EMPTY_EXCEPTION
                         )
                     }
@@ -76,7 +71,7 @@ class SecurityConfig(
                 JwtAuthenticationFilter(objectMapper, jwtExtract),
                 UsernamePasswordAuthenticationFilter::class.java
             )
-            .addFilterBefore(coroutineSecurityFilter, UsernamePasswordAuthenticationFilter::class.java)
+//            .addFilterBefore(coroutineSecurityFilter, UsernamePasswordAuthenticationFilter::class.java)
             .build()
     }
 
