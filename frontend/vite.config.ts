@@ -22,6 +22,14 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://nanuri-api-backend.azurewebsites.net',
+        rewrite: (path) => path.replace(/\/api/, ''),
+      },
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

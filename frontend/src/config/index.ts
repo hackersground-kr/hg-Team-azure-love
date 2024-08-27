@@ -8,6 +8,8 @@ const email = 'auther-email@gmail.com';
 
 const repository = 'https://github.com/suren-atoyan/react-pwa';
 
+const BASE_URL = 'https://nanuri-api-backend.azurewebsites.net';
+
 const messages = {
   app: {
     crash: {
@@ -60,6 +62,7 @@ export {
   repository,
   email,
   title,
+  BASE_URL,
   defaultMetaTags,
   giphy404,
 };

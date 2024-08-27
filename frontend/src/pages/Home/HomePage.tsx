@@ -6,10 +6,18 @@ import PlusButton from '@/components/Button/PlusButton';
 import Box from '@mui/material/Box';
 import { Link, useNavigate } from 'react-router-dom';
 import { ButtonBase } from '@mui/material';
+import { useEffect } from 'react';
+import client from '@/config/client';
 
 function HomePage() {
   const list = Array.from({ length: 10 }).map((_, i) => i);
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    client.get(`/post`).then((res) => res.data)
+      .then((result) => console.log(result));
+  }, []);
 
   return (
     <>
