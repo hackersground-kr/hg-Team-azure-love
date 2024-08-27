@@ -38,13 +38,12 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew bootJar
-      - name: test dir
+      - name: Set Jar file to app.jar
         run: |
-          ls -l
-          ls -l ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          mv ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/build/libs/nanuri-server-0.0.1.jar ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/build/libs/app.jar
       - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ env.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/build/libs/*.jar'
+          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/build/libs/app.jar'
